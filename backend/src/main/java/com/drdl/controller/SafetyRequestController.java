@@ -47,6 +47,12 @@ public class SafetyRequestController {
         return ResponseEntity.ok(requests);
     }
 
+    @GetMapping("/personnel/{personnelNumber}")
+    public ResponseEntity<List<SafetyRequestDTO>> getRequestsByPersonnelNumber(@PathVariable String personnelNumber) {
+        List<SafetyRequestDTO> requests = service.getRequestsByPersonnelNumber(personnelNumber);
+        return ResponseEntity.ok(requests);
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteRequest(@PathVariable Long id) {
         service.deleteRequest(id);

@@ -1,10 +1,43 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 
-export default function IntegrationSection({ formData, handleInputChange }) {
+export default function IntegrationSection({ formData, handleInputChange, employees = [] }) {
   const [integrationFacility, setIntegrationFacility] = useState("");
   const [activityIncharge, setActivityIncharge] = useState("");
+  const [selectedAddress, setSelectedAddress] = useState("");
   const [activitySchedule, setActivitySchedule] = useState("");
   const [ambulance, setAmbulance] = useState("");
+  const [fromDate, setFromDate] = useState("");
+  const [toDate, setToDate] = useState("");
+
+  // Get today's date in YYYY-MM-DD format
+  const getTodayDate = () => {
+    const today = new Date();
+    return today.toISOString().split("T")[0];
+  };
+
+  const todayDate = useMemo(() => getTodayDate(), []);
+
+  const handleFromDateChange = (e) => {
+    const date = e.target.value;
+    setFromDate(date);
+    // Reset toDate if it's before the new fromDate
+    if (toDate && date > toDate) {
+      setToDate("");
+    }
+  };
+
+  const handleToDateChange = (e) => {
+    const date = e.target.value;
+    if (!fromDate) {
+      alert("Please select From Date first");
+      return;
+    }
+    if (date < fromDate) {
+      alert("To Date cannot be before From Date");
+      return;
+    }
+    setToDate(date);
+  };
 
   return (
     <div className="form-section">
@@ -82,11 +115,52 @@ export default function IntegrationSection({ formData, handleInputChange }) {
           <input type="text" className="form-input" placeholder="Enter Phone Number" />
         </div>
       )}
+      {/* Show employee dropdown when DRDL is selected as Activity In-Charge */}
+      {activityIncharge === "DRDL" && (
+        <div className="form-section" style={{ marginTop: 12 }}>
+          <select
+            className="form-select"
+            value={selectedAddress}
+            onChange={(e) => {
+              const empId = e.target.value;
+              setSelectedAddress(empId);
+              const emp = employees.find((x) => String(x.empId) === String(empId));
+              if (emp && handleInputChange) {
+                handleInputChange({ target: { name: 'activityInchargeName', value: emp.employeeName } });
+                handleInputChange({ target: { name: 'activityInchargeOrg', value: emp.directorate } });
+                handleInputChange({ target: { name: 'activityInchargePhone', value: emp.phone } });
+                handleInputChange({ target: { name: 'designation', value: emp.designation } });
+              }
+            }}
+          >
+            <option value="">-- Select Activity Incharge --</option>
+            {employees.map((emp) => (
+              <option key={emp.empId} value={emp.empId}>
+                {emp.employeeName} ({emp.personnelNo}) - {emp.designation}
+              </option>
+            ))}
+          </select>
+        </div>
+      )}
 
       <label className="form-label">Date of Activity *</label>
       <div className="date-group">
-        <input type="date" className="form-input" required />
-        <input type="date" className="form-input" required />
+        <input 
+          type="date" 
+          className="form-input" 
+          min={todayDate}
+          value={fromDate}
+          onChange={handleFromDateChange}
+          required 
+        />
+        <input 
+          type="date" 
+          className="form-input" 
+          min={fromDate || todayDate}
+          value={toDate}
+          onChange={handleToDateChange}
+          required 
+        />
       </div>
 
       <label className="form-label">Activity Schedule *</label>
@@ -98,7 +172,7 @@ export default function IntegrationSection({ formData, handleInputChange }) {
             value="available"
             onChange={(e) => setActivitySchedule(e.target.value)}
           />
-          Available Enclose
+          Available
         </label>
         <label>
           <input
@@ -107,7 +181,7 @@ export default function IntegrationSection({ formData, handleInputChange }) {
             value="notavailable"
             onChange={(e) => setActivitySchedule(e.target.value)}
           />
-          Not Available Reason
+          Not Available
         </label>
       </div>
       {activitySchedule === "available" && (
@@ -139,7 +213,7 @@ export default function IntegrationSection({ formData, handleInputChange }) {
             value="notrequired"
             onChange={(e) => setAmbulance(e.target.value)}
           />
-          Not Required Reason
+          Not Required
         </label>
       </div>
       {ambulance === "notrequired" && (

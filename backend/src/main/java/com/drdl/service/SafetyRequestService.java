@@ -6,6 +6,7 @@ import com.drdl.repository.SafetyRequestRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,8 +19,30 @@ public class SafetyRequestService {
     public SafetyRequestDTO createRequest(SafetyRequestDTO dto) {
         SafetyRequest request = mapDtoToEntity(dto);
         request.setDateOfRequest(LocalDate.now());
+        
+        // Generate unique ID
+        String uniqueId = generateUniqueId(dto.getPersonnelNumber());
+        request.setUniqueId(uniqueId);
+        
         SafetyRequest saved = repository.save(request);
         return mapEntityToDto(saved);
+    }
+
+    private String generateUniqueId(String personnelNumber) {
+        LocalDate today = LocalDate.now();
+        String datePrefix = today.format(DateTimeFormatter.ofPattern("yyyyMMdd"));
+        
+        // Get all requests created today
+        List<SafetyRequest> todayRequests = repository.findByDateOfRequestBetween(today, today);
+        
+        // Count requests for this personnel number today
+        long countForToday = todayRequests.stream()
+            .filter(r -> r.getPersonnelNumber().equals(personnelNumber))
+            .count();
+        
+        // Format: YYYYMMDD00 (where 00 increments based on request count)
+        String suffix = String.format("%02d", countForToday + 1);
+        return datePrefix + suffix;
     }
 
     public SafetyRequestDTO updateRequest(Long id, SafetyRequestDTO dto) {
@@ -49,6 +72,13 @@ public class SafetyRequestService {
             .collect(Collectors.toList());
     }
 
+    public List<SafetyRequestDTO> getRequestsByPersonnelNumber(String personnelNumber) {
+        return repository.findByPersonnelNumber(personnelNumber).stream()
+            .sorted((r1, r2) -> r2.getDateOfRequest().compareTo(r1.getDateOfRequest()))
+            .map(this::mapEntityToDto)
+            .collect(Collectors.toList());
+    }
+
     public void deleteRequest(Long id) {
         repository.deleteById(id);
     }
@@ -56,6 +86,7 @@ public class SafetyRequestService {
     private SafetyRequest mapDtoToEntity(SafetyRequestDTO dto) {
         SafetyRequest entity = new SafetyRequest();
         entity.setRequestId(dto.getRequestId());
+        entity.setUniqueId(dto.getUniqueId());
         entity.setPersonnelNumber(dto.getPersonnelNumber());
         entity.setSafetyCoverage(dto.getSafetyCoverage());
         entity.setDirectorate(dto.getDirectorate());
@@ -96,6 +127,7 @@ public class SafetyRequestService {
     private SafetyRequestDTO mapEntityToDto(SafetyRequest entity) {
         SafetyRequestDTO dto = new SafetyRequestDTO();
         dto.setRequestId(entity.getRequestId());
+        dto.setUniqueId(entity.getUniqueId());
         dto.setPersonnelNumber(entity.getPersonnelNumber());
         dto.setDateOfRequest(entity.getDateOfRequest());
         dto.setSafetyCoverage(entity.getSafetyCoverage());

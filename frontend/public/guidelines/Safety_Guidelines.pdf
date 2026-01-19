@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Safety Guidelines - DRDL</title>
+    <style>
+        body {
+            font-family: 'Calibri', 'Arial', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 40px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #1a1a1a;
+            font-size: 32px;
+            margin-bottom: 10px;
+            border-bottom: 3px solid #2c3e50;
+            padding-bottom: 15px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+        h2 {
+            color: #2c3e50;
+            font-size: 16px;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        ul {
+            margin: 10px 0;
+            padding-left: 30px;
+        }
+        li {
+            margin-bottom: 8px;
+            color: #333;
+            line-height: 1.8;
+        }
+        .footer {
+            margin-top: 40px;
+            border-top: 2px solid #ddd;
+            padding-top: 20px;
+            text-align: center;
+            color: #666;
+            font-size: 12px;
+        }
+        .acknowledgement {
+            background-color: #f9f9f9;
+            border-left: 4px solid #2c3e50;
+            padding: 15px;
+            margin-top: 30px;
+        }
+        .acknowledgement h3 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+        .acknowledgement p {
+            margin: 10px 0;
+            color: #333;
+            line-height: 1.8;
+        }
+        @media print {
+            body {
+                background-color: white;
+            }
+            .container {
+                max-width: 100%;
+                box-shadow: none;
+                padding: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>SAFETY GUIDELINES</h1>
+        <p class="subtitle">DRDL - Safety Fire Request Procedures</p>
+
+        <h2>1. PERSONAL PROTECTIVE EQUIPMENT (PPE)</h2>
+        <ul>
+            <li>All personnel must wear appropriate PPE based on the hazard level assigned to their task.</li>
+            <li>Inspect all PPE before use for any signs of damage, wear, or defects.</li>
+            <li>Replace damaged or worn-out PPE immediately to ensure continued protection.</li>
+            <li>Ensure proper fit and secure fastenings of all protective equipment.</li>
+            <li>Keep PPE clean and maintained according to manufacturer specifications.</li>
+        </ul>
+
+        <h2>2. WORK SITE SAFETY</h2>
+        <ul>
+            <li>Conduct a thorough safety assessment before commencing any work activities.</li>
+            <li>Mark and cordon off all hazardous areas with warning signs.</li>
+            <li>Maintain clear communication with all team members throughout the work period.</li>
+            <li>Keep emergency exits and safety equipment easily accessible at all times.</li>
+            <li>Ensure adequate lighting and ventilation in all work areas.</li>
+            <li>Post emergency contact numbers prominently at the work site.</li>
+        </ul>
+
+        <h2>3. HAZARDOUS ACTIVITIES</h2>
+        <ul>
+            <li>Only trained and authorized personnel are permitted to handle hazardous materials.</li>
+            <li>Follow all prescribed procedures for each hazardous activity without exception.</li>
+            <li>Do not deviate from approved work plans under any circumstances.</li>
+            <li>Maintain proper ventilation and environmental controls during hazardous operations.</li>
+            <li>Implement containment measures to prevent environmental contamination.</li>
+            <li>Regularly review and update standard operating procedures (SOPs).</li>
+        </ul>
+
+        <h2>4. EMERGENCY PROCEDURES</h2>
+        <ul>
+            <li>All personnel must know the location of emergency equipment including first aid kits and fire extinguishers.</li>
+            <li>Report all incidents, near-misses, and injuries immediately to the site supervisor.</li>
+            <li>Have emergency contact numbers readily available and accessible.</li>
+            <li>Conduct emergency drills regularly to ensure preparedness.</li>
+            <li>Evacuate immediately when instructed by the safety officer.</li>
+            <li>Seek medical attention for any injuries, no matter how minor they appear.</li>
+        </ul>
+
+        <h2>5. DOCUMENTATION AND COMPLIANCE</h2>
+        <ul>
+            <li>Maintain accurate records of all safety activities and incidents.</li>
+            <li>Complete all required safety documentation before work commencement.</li>
+            <li>Ensure compliance with organizational safety policies and regulations.</li>
+            <li>Notify the Safety Division telephonically before commencing activity.</li>
+            <li>Provide adequate time and resources for safety training.</li>
+            <li>Maintain updated emergency contact information and procedures.</li>
+        </ul>
+
+        <h2>6. SUPERVISOR RESPONSIBILITIES</h2>
+        <ul>
+            <li>Ensure all team members receive proper training on safety protocols.</li>
+            <li>Conduct regular safety briefings before commencing work.</li>
+            <li>Monitor and enforce compliance with all safety guidelines.</li>
+            <li>Investigate and report all safety incidents promptly.</li>
+            <li>Provide feedback and recognize safe work practices.</li>
+            <li>Review and improve safety procedures based on lessons learned.</li>
+        </ul>
+
+        <h2>7. ACCOUNTABILITY</h2>
+        <ul>
+            <li>All personnel are responsible for maintaining a safe work environment.</li>
+            <li>Any violation of safety guidelines may result in disciplinary action.</li>
+            <li>Supervisors will be held accountable for ensuring compliance of their teams.</li>
+            <li>Work must not commence without proper safety clearance.</li>
+        </ul>
+
+        <div class="acknowledgement">
+            <h3>Acknowledgement</h3>
+            <p>By signing the safety declaration form, I acknowledge that I have read and understand these guidelines and commit to adhering to all safety procedures and requirements.</p>
+        </div>
+
+        <div class="footer">
+            <p>Document Version: 1.0 | Last Updated: January 2026</p>
+            <p>DRDL Safety Division - Confidential</p>
+        </div>
+    </div>
+</body>
+</html>

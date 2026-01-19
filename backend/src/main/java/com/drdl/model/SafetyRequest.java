@@ -19,6 +19,9 @@ public class SafetyRequest {
     @Column(name = "REQUEST_ID")
     private Long requestId;
 
+    @Column(name = "UNIQUE_ID", length = 12, unique = true)
+    private String uniqueId;
+
     @Column(name = "PERS_NO", length = 6, nullable = false)
     private String personnelNumber;
 

@@ -1,0 +1,215 @@
+.requests-table-container {
+  margin-top: 40px;
+  padding: 30px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.requests-table-container h2 {
+  color: #2c3e50;
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 22px;
+  border-bottom: 3px solid #2c3e50;
+  padding-bottom: 10px;
+}
+
+.requests-table-container.empty-message,
+.requests-table-container.loading,
+.requests-table-container.error {
+  text-align: center;
+  padding: 30px;
+  font-size: 16px;
+  color: #666;
+}
+
+.requests-table-container.error {
+  color: #e74c3c;
+  background-color: #fadbd8;
+}
+
+.requests-table-container.loading {
+  color: #3498db;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.requests-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  font-size: 13px;
+}
+
+.requests-table thead {
+  background-color: #34495e;
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.requests-table th {
+  padding: 12px;
+  text-align: left;
+  font-weight: 600;
+  border-bottom: 2px solid #2c3e50;
+  white-space: nowrap;
+}
+
+.requests-table td {
+  padding: 12px;
+  border-bottom: 1px solid #ecf0f1;
+  color: #333;
+}
+
+.requests-table tbody tr {
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.requests-table tbody tr:hover {
+  background-color: #e8f4f8;
+}
+
+.requests-table tbody tr.selected {
+  background-color: #cfe2ff !important;
+  border-left: 4px solid #667eea;
+}
+
+.requests-table tbody tr:nth-child(even) {
+  background-color: #f5f5f5;
+}
+
+.requests-table tbody tr.selected:nth-child(even) {
+  background-color: #cfe2ff !important;
+}
+
+.unique-id {
+  font-weight: 600;
+  color: #2c3e50;
+  font-family: monospace;
+}
+
+.status {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.status.pending {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.status.approved {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.status.rejected {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.status.recommended {
+  background-color: #cfe2ff;
+  color: #084298;
+}
+
+.actions {
+  white-space: nowrap;
+  text-align: center;
+}
+
+.actions button {
+  padding: 6px 10px;
+  margin: 0 5px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-edit {
+  background-color: #f39c12;
+  color: white;
+}
+
+.btn-edit:hover {
+  background-color: #e67e22;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-print {
+  background-color: #3498db;
+  color: white;
+}
+
+.btn-print:hover {
+  background-color: #2980b9;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-delete {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.btn-delete:hover {
+  background-color: #c0392b;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-update {
+  background-color: #27ae60;
+  color: white;
+}
+
+.btn-update:hover {
+  background-color: #229954;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .requests-table-container {
+    padding: 15px;
+  }
+
+  .requests-table-container h2 {
+    font-size: 18px;
+  }
+
+  .requests-table {
+    font-size: 11px;
+  }
+
+  .requests-table th,
+  .requests-table td {
+    padding: 8px;
+  }
+
+  .actions button {
+    padding: 4px 8px;
+    margin: 0 2px;
+    font-size: 10px;
+  }
+
+  .table-wrapper {
+    max-height: 400px;
+  }
+}

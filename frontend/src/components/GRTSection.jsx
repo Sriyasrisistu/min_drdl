@@ -1,10 +1,42 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 
 export default function GRTSection({ formData, handleInputChange }) {
   const [workCentre, setWorkCentre] = useState("");
   const [tarbStatus, setTarbStatus] = useState("");
   const [activitySchedule, setActivitySchedule] = useState("");
   const [ambulance, setAmbulance] = useState("");
+  const [fromDate, setFromDate] = useState("");
+  const [toDate, setToDate] = useState("");
+
+  // Get today's date in YYYY-MM-DD format
+  const getTodayDate = () => {
+    const today = new Date();
+    return today.toISOString().split("T")[0];
+  };
+
+  const todayDate = useMemo(() => getTodayDate(), []);
+
+  const handleFromDateChange = (e) => {
+    const date = e.target.value;
+    setFromDate(date);
+    // Reset toDate if it's before the new fromDate
+    if (toDate && date > toDate) {
+      setToDate("");
+    }
+  };
+
+  const handleToDateChange = (e) => {
+    const date = e.target.value;
+    if (!fromDate) {
+      alert("Please select From Date first");
+      return;
+    }
+    if (date < fromDate) {
+      alert("To Date cannot be before From Date");
+      return;
+    }
+    setToDate(date);
+  };
 
   return (
     <div className="form-section">
@@ -72,8 +104,22 @@ export default function GRTSection({ formData, handleInputChange }) {
 
       <label className="form-label">Date of Test *</label>
       <div className="date-group">
-        <input type="date" className="form-input" required />
-        <input type="date" className="form-input" required />
+        <input 
+          type="date" 
+          className="form-input" 
+          min={todayDate}
+          value={fromDate}
+          onChange={handleFromDateChange}
+          required 
+        />
+        <input 
+          type="date" 
+          className="form-input" 
+          min={fromDate || todayDate}
+          value={toDate}
+          onChange={handleToDateChange}
+          required 
+        />
       </div>
 
       <label className="form-label">Scheduled Time of Test *</label>
@@ -89,7 +135,7 @@ export default function GRTSection({ formData, handleInputChange }) {
             onChange={(e) => setActivitySchedule(e.target.value)}
             required
           />
-          Available Enclose
+          Available
         </label>
         <label>
           <input
@@ -98,7 +144,7 @@ export default function GRTSection({ formData, handleInputChange }) {
             value="notavailable"
             onChange={(e) => setActivitySchedule(e.target.value)}
           />
-          Not Available Reason
+          Not Available
         </label>
       </div>
       {activitySchedule === "available" && (
@@ -127,7 +173,7 @@ export default function GRTSection({ formData, handleInputChange }) {
             value="notrequired"
             onChange={(e) => setAmbulance(e.target.value)}
           />
-          Not Required Reason
+          Not Required
         </label>
       </div>
       {ambulance === "notrequired" && (

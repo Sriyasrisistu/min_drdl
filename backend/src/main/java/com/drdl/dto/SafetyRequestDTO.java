@@ -11,6 +11,7 @@ import java.time.LocalTime;
 @AllArgsConstructor
 public class SafetyRequestDTO {
     private Long requestId;
+    private String uniqueId;
     private String personnelNumber;
     private LocalDate dateOfRequest;
     private String safetyCoverage;
